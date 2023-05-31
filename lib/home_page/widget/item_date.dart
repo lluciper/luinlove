@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ItemDate extends StatelessWidget {
@@ -27,11 +28,21 @@ class ItemDate extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(date),
-          const SizedBox(height: 8),
+          Text(
+            date,
+            style: GoogleFonts.aBeeZee(
+              fontWeight: FontWeight.w700,
+              fontSize: 32,
+              color: ColorsApp.white,
+            ),
+          ),
           Text(
             description,
-            style: GoogleFonts.abel(),
+            style: GoogleFonts.aBeeZee(
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+              color: ColorsApp.white,
+            ),
           ),
         ],
       ),

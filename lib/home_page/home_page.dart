@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home_page/slider_one.dart';
 import 'package:flutter_application_1/home_page/slider_two.dart';
 import 'package:flutter_application_1/wave/wave_animation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -19,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
+      body: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
@@ -51,9 +53,9 @@ class _HomePageState extends State<HomePage> {
                         int ngay = numberOfDays % 7;
                         return Builder(
                           builder: (BuildContext context) {
-                            return Container(
+                            return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              child: i == 1 ? Text('slide1') : SliderTwo(),
+                              child: i == 1 ? SliderOne() : SliderTwo(),
                             );
                             // Text(
                             //   i == 1
@@ -92,19 +94,33 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Container(
-          width: 60,
-          height: 60,
+          width: 80,
+          height: 80,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(80),
             color: Colors.pink[50],
+            border: Border.all(
+              color: Colors.red,
+            ),
           ),
         ),
-        const SizedBox(height: 16),
         Row(
           children: [
-            Text('data'),
+            Text(
+              'name',
+              style: GoogleFonts.gamjaFlower(
+                fontWeight: FontWeight.w700,
+                fontSize: 24,
+              ),
+            ),
             const SizedBox(width: 8),
-            Text('data'),
+            Text(
+              'old',
+              style: GoogleFonts.gamjaFlower(
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+              ),
+            ),
           ],
         )
       ],

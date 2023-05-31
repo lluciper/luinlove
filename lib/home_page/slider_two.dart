@@ -14,9 +14,9 @@ class SliderTwo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               ItemDate(
                 date: '0',
                 description: AppStrings.year,
@@ -39,10 +39,13 @@ class SliderTwo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('# Save date #'),
+              Text(
+                '# Save date #',
+                style: GoogleFonts.aBeeZee(fontWeight: FontWeight.w400),
+              ),
               Text(
                 'real time',
-                style: GoogleFonts.abel(fontWeight: FontWeight.w400),
+                style: GoogleFonts.aBeeZee(fontWeight: FontWeight.w400),
               ),
             ],
           ),
