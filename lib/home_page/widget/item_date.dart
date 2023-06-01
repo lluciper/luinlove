@@ -33,7 +33,7 @@ class ItemDate extends StatelessWidget {
             style: GoogleFonts.aBeeZee(
               fontWeight: FontWeight.w700,
               fontSize: 32,
-              color: ColorsApp.white,
+              color: AppColors.white,
             ),
           ),
           Text(
@@ -41,7 +41,7 @@ class ItemDate extends StatelessWidget {
             style: GoogleFonts.aBeeZee(
               fontWeight: FontWeight.w500,
               fontSize: 18,
-              color: ColorsApp.white,
+              color: AppColors.white,
             ),
           ),
         ],

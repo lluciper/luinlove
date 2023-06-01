@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/cubit/home/home_cubit.dart';
 import 'package:flutter_application_1/home_page/slider_one.dart';
 import 'package:flutter_application_1/home_page/slider_two.dart';
 import 'package:flutter_application_1/wave/wave_animation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -15,6 +19,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +107,7 @@ class _HomePageState extends State<HomePage> {
           height: 80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80),
-            color: Colors.pink[50],
+            color: AppColors.pink50,
             border: Border.all(
               color: Colors.red,
             ),
