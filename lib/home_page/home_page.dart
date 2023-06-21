@@ -1,10 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/cubit/home/home_cubit.dart';
 import 'package:flutter_application_1/home_page/slider_one.dart';
 import 'package:flutter_application_1/home_page/slider_two.dart';
 import 'package:flutter_application_1/wave/wave_animation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/utils.dart';
@@ -66,13 +64,6 @@ class _HomePageState extends State<HomePage> {
                               width: MediaQuery.of(context).size.width,
                               child: i == 1 ? SliderOne() : SliderTwo(),
                             );
-                            // Text(
-                            //   i == 1
-                            //       ? 'text $numberOfDays'
-                            //       // : 'tuan $tuan ngay $ngay',
-                            //       : SlideTwo(),
-                            //   style: TextStyle(fontSize: 16.0),
-                            // ));
                           },
                         );
                       }).toList(),

@@ -23,7 +23,7 @@ class SliderOne extends StatelessWidget {
       builder: (context, state) {
         DateTime now = DateTime.now();
 
-        Duration difference = now.difference(state.saveDate ?? DateTime.now());
+        Duration difference = now.difference(state.saveDate ?? now);
         int numberOfDays = difference.inDays;
 
         return Container(
