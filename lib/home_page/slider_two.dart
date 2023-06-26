@@ -4,6 +4,7 @@ import 'package:flutter_application_1/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:time_machine/time_machine.dart';
 
 import '../cubit/home/home_cubit.dart';
 
@@ -20,15 +21,25 @@ class SliderTwo extends StatelessWidget {
         return pre.saveDate != cur.saveDate;
       },
       builder: (context, state) {
-        DateTime now = DateTime.now();
+        LocalDate now = LocalDate.today();
 
-        Duration difference = now.difference(state.saveDate ?? now);
-        int numberOfDays = difference.inDays;
+        DateTime nows = DateTime.now();
 
-        int year = (difference.inDays / 365).floor();
-        int month = (difference.inDays / 30).floor();
-        int week = numberOfDays ~/ 7;
-        int day = numberOfDays % 7;
+        // Duration difference = now.difference(state.saveDate ?? now);
+        // int numberOfDays = difference.inDays;
+
+        LocalDate saveDate = LocalDate.dateTime(DateTime(
+          state.saveDate?.year ?? nows.year,
+          state.saveDate?.month ?? nows.month,
+          state.saveDate?.day ?? nows.day,
+        ));
+
+        Period diff = now.periodSince(saveDate);
+
+        int year = diff.years;
+        int month = diff.months;
+        int week = diff.days ~/ 7;
+        int day = diff.days % 7;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -62,11 +73,11 @@ class SliderTwo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    difference.toString(),
+                    state.saveDate?.formatDateTime ?? '',
                     style: GoogleFonts.aBeeZee(fontWeight: FontWeight.w400),
                   ),
                   Text(
-                    now.formatDateTime,
+                    nows.formatDateTime,
                     style: GoogleFonts.aBeeZee(fontWeight: FontWeight.w400),
                   ),
                 ],
