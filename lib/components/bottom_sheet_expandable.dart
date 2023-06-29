@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/utils/colors.dart';
+import 'package:luinlove/utils/colors.dart';
 
 class BottomSheetExpandable extends StatefulWidget {
   const BottomSheetExpandable({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home_page/widget/item_date.dart';
-import 'package:flutter_application_1/utils/utils.dart';
+import 'package:luinlove/home_page/widget/item_date.dart';
+import 'package:luinlove/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';

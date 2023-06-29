@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/date_time_picker_custom/date_picker_p.dart';
-import 'package:flutter_application_1/utils/utils.dart';
+import 'package:luinlove/components/date_time_picker_custom/date_picker_p.dart';
+import 'package:luinlove/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
