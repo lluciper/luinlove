@@ -99,7 +99,8 @@ class SliderOne extends StatelessWidget {
                                   splashColor: AppColors.transparent,
                                   highlightColor: AppColors.transparent,
                                   onTap: () {
-                                    context.read<HomeCubit>().saveInformation(TypeSave.SaveDate);
+                                    context.read<HomeCubit>().saveInformation(
+                                        typeSave: TypeSave.SaveDate);
                                     Navigator.of(context).pop();
                                   },
                                   child: Container(
