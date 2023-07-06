@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/app_bloc.dart';
-import 'home_page/home_page.dart';
+import 'data/storage/local/storage_shared_preference.dart';
+import 'ui/home/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
-
+  await StorageSharedPreference.init();
   runApp(
-    MultiBlocProvider(
-        providers: AppBlocs.blocProviders, child:  const MyApp()),
+    MultiBlocProvider(providers: AppBlocs.blocProviders, child: const MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'luinlove'),
+      home: const HomeScreen(title: 'luinlove'),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:luinlove/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/utils.dart';
 
 class ItemDate extends StatelessWidget {
   const ItemDate({

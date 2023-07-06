@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:luinlove/components/date_time_picker_custom/date_picker_p.dart';
-import 'package:luinlove/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../components/bottom_sheet_expandable.dart';
-import '../cubit/home/home_cubit.dart';
+import '../../components/bottom_sheet_expandable.dart';
+import '../../components/date_time_picker_custom/date_picker_p.dart';
+import '../../cubit/home/home_cubit.dart';
+import '../../utils/utils.dart';
 
 class SliderOne extends StatelessWidget {
   const SliderOne({super.key});
@@ -21,10 +21,10 @@ class SliderOne extends StatelessWidget {
         return pre.saveDate != cur.saveDate;
       },
       builder: (context, state) {
-        DateTime now = DateTime.now();
+        var now = DateTime.now();
 
-        Duration difference = now.difference(state.saveDate ?? now);
-        int numberOfDays = difference.inDays;
+        var difference = now.difference(state.saveDate ?? now);
+        var numberOfDays = difference.inDays;
 
         return Container(
           alignment: Alignment.center,
@@ -99,7 +99,7 @@ class SliderOne extends StatelessWidget {
                                   splashColor: AppColors.transparent,
                                   highlightColor: AppColors.transparent,
                                   onTap: () {
-                                    context.read<HomeCubit>().saveDate();
+                                    context.read<HomeCubit>().saveInformation(TypeSave.SaveDate);
                                     Navigator.of(context).pop();
                                   },
                                   child: Container(

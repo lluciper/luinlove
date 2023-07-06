@@ -22,11 +22,11 @@ class _WaveAnimationState extends State<WaveAnimation>
         curve: Curves.easeInOutSine,
         reverseCurve: Curves.easeInOutSine);
     animation = Tween<double>(begin: 0, end: 0.5).animate(curve);
-    animationController.addListener(() {
-      setState(() {});
-    });
-    animationController.repeat(
-        reverse: true, period: const Duration(milliseconds: 10000));
+    animationController
+      ..addListener(() {
+        setState(() {});
+      })
+      ..repeat(reverse: true, period: const Duration(milliseconds: 10000));
   }
 
   @override
@@ -94,12 +94,16 @@ class _WaveAnimationState extends State<WaveAnimation>
 }
 
 class WavePainter extends CustomPainter {
+  WavePainter({
+    required this.colors,
+    this.amount = 4,
+    this.pick = 30,
+    this.realSize,
+  });
   List<Color> colors;
   int amount;
   double pick;
   Size? realSize;
-  WavePainter(
-      {required this.colors, this.amount = 4, this.pick = 30, this.realSize});
   @override
   void paint(Canvas canvas, Size size) {
     size = realSize ?? size;

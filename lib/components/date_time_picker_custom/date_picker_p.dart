@@ -359,7 +359,7 @@ class _DatePickerPState extends State<DatePickerP> {
           children: List<Widget>.generate(
             60,
             (int index) {
-              final int minute = index;
+              final minute = index;
 
               return Container(
                 height: 60,
@@ -407,7 +407,7 @@ class _DatePickerPState extends State<DatePickerP> {
           children: List<Widget>.generate(
             24,
             (int index) {
-              final int hour = index;
+              final hour = index;
 
               return Container(
                 height: 60,
@@ -455,7 +455,7 @@ class _DatePickerPState extends State<DatePickerP> {
           children: List<Widget>.generate(
             generateDay,
             (int index) {
-              final int day = index + 1;
+              final day = index + 1;
 
               return Container(
                 height: 60,
@@ -504,7 +504,7 @@ class _DatePickerPState extends State<DatePickerP> {
           children: List<Widget>.generate(
             12,
             (int index) {
-              final int month = index + 1;
+              final month = index + 1;
 
               return Container(
                 height: 60,

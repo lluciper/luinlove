@@ -1,22 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:luinlove/home_page/slider_one.dart';
-import 'package:luinlove/home_page/slider_two.dart';
-import 'package:luinlove/wave/wave_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../utils/utils.dart';
+import '../../components/wave/wave_animation.dart';
+import '../../utils/utils.dart';
+import 'slider_one.dart';
+import 'slider_two.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -50,14 +50,6 @@ class _HomePageState extends State<HomePage> {
                       options:
                           CarouselOptions(height: 400.0, viewportFraction: 1),
                       items: [1, 2].map((i) {
-                        DateTime now = DateTime.now();
-                        DateTime endDate = DateTime(2023, 3, 26);
-
-                        Duration difference = endDate.difference(now);
-                        int numberOfDays = difference.inDays;
-
-                        int tuan = numberOfDays ~/ 7;
-                        int ngay = numberOfDays % 7;
                         return Builder(
                           builder: (BuildContext context) {
                             return SizedBox(
