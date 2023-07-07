@@ -9,14 +9,14 @@ Future<String> getTokenFirebase() async {
 }
 
 Future<void> getPermission() async {
-  // var messaging = FirebaseMessaging.instance;
-  // var settings = await messaging.requestPermission();
+  var messaging = FirebaseMessaging.instance;
+  var settings = await messaging.requestPermission();
 
-  // print('User granted permission: ${settings.authorizationStatus}');
+  print('User granted permission: ${settings.authorizationStatus}');
 
-  // await configuration();
+  await configuration();
 
-  // await onBackgroundMessage();
+  await onBackgroundMessage();
 }
 
 Future<void> foregroundMessages() async {
