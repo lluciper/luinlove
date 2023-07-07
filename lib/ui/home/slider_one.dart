@@ -15,6 +15,7 @@ class SliderOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
+        // ignore: unnecessary_statements
         state.saveDate != null;
       },
       buildWhen: (pre, cur) {

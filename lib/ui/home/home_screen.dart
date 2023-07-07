@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           builder: (BuildContext context) {
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              child: i == 1 ? SliderOne() : SliderTwo(),
+                              child: i == 1 ? const SliderOne() : const SliderTwo(),
                             );
                           },
                         );

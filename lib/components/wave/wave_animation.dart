@@ -123,8 +123,8 @@ class WavePainter extends CustomPainter {
     // path.lineTo(0, 0);
     for (var i = 1; i <= (4 * amount - 2); i++) {
       if (i % 2 == 0) {
-        path.lineTo(i * ww / 2, 0);
-        path.lineTo(i * ww / 2, 0);
+        path..lineTo(i * ww / 2, 0)
+        ..lineTo(i * ww / 2, 0);
       } else {
         if (hh) {
           path.quadraticBezierTo(i * (ww / 2), pick, (i + 1) * ww / 2, 0);
@@ -135,10 +135,10 @@ class WavePainter extends CustomPainter {
         }
       }
     }
-    path.lineTo(size.width, 0);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.close();
+    path..lineTo(size.width, 0)
+    ..lineTo(size.width, size.height)
+    ..lineTo(0, size.height)
+    ..close();
     canvas.drawPath(path, paint);
   }
 
