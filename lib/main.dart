@@ -1,11 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/app_bloc.dart';
 import 'data/storage/local/storage_shared_preference.dart';
 import 'ui/home/home_screen.dart';
+import 'utils/firebase_mess.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // await getPermission();
   Bloc.observer = AppBlocObserver();
   await StorageSharedPreference.init();
   runApp(
