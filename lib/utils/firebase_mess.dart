@@ -5,27 +5,33 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 Future<String> getTokenFirebase() async {
   final mess = FirebaseMessaging.instance;
   final token = await mess.getToken() ?? '';
+  print('flutter: token: $token');
   return token;
 }
 
 Future<void> getPermission() async {
   var messaging = FirebaseMessaging.instance;
   var settings = await messaging.requestPermission();
-
-  print('User granted permission: ${settings.authorizationStatus}');
+  await getTokenFirebase();
+  print('flutter: User granted permission: ${settings.authorizationStatus}');
 
   await configuration();
 
+  print('flutter: configuration');
+
   await onBackgroundMessage();
+
+  print('flutter: onBackgroundMessage');
 }
 
 Future<void> foregroundMessages() async {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
+    print('flutter: Got a message whilst in the foreground!');
+    print('flutter: Message data: ${message.data}');
 
     if (message.notification != null) {
-      print('Message also contained a notification: ${message.notification}');
+      print(
+          'flutter: Message also contained a notification: ${message.notification}');
     }
   });
 }
@@ -33,7 +39,7 @@ Future<void> foregroundMessages() async {
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
-  print("Handling a background message: ${message.messageId}");
+  print('flutter: Handling a background message: ${message.messageId}');
 }
 
 Future<void> onBackgroundMessage() async {
