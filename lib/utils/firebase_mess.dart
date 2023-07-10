@@ -11,7 +11,9 @@ Future<String> getTokenFirebase() async {
 
 Future<void> getPermission() async {
   var messaging = FirebaseMessaging.instance;
-  var settings = await messaging.requestPermission();
+  var settings = await messaging.requestPermission(
+    provisional: true,
+  );
   await getTokenFirebase();
   print('flutter: User granted permission: ${settings.authorizationStatus}');
 
@@ -22,6 +24,9 @@ Future<void> getPermission() async {
   await onBackgroundMessage();
 
   print('flutter: onBackgroundMessage');
+
+  await foregroundMessages();
+  print('flutter: foregroundMessages');
 }
 
 Future<void> foregroundMessages() async {
@@ -57,22 +62,50 @@ Future<void> configuration() async {
 
   // Android
   const channel = AndroidNotificationChannel(
-    'luinlove',
-    'inlove',
+    'high_importance_channel',
+    'High Importance Notifications',
     importance: Importance.max,
   );
 
+  // var android = const AndroidInitializationSettings('@mipmap/launcher_icon');
+
+  // final initializationSettingsDarwin =
+  //     DarwinInitializationSettings(
+  //   requestSoundPermission: false,
+  //   requestBadgePermission: false,
+  //   requestAlertPermission: false,
+  //   onDidReceiveLocalNotification: (id, title, body, payload) {}
+  //       // onSelectNotification(payload ?? ''),
+  // );
+
+  //  var initSettings = InitializationSettings(
+  //     android: android, iOS: initializationSettingsDarwin);
+
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  // await flutterLocalNotificationsPlugin.initialize(
+  //   initSettings,
+  //   onDidReceiveNotificationResponse: (details) =>{}
+  //       // onSelectNotification(details.payload ?? ''),
+  //   // onDidReceiveBackgroundNotificationResponse:(details) => onSelectNotification(details.payload ?? '')
+  // );
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
+          AndroidFlutterLocalNotificationsPlugin>()!
+      .requestPermission();
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()!
+      .createNotificationChannel(channel);
   // Android
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     var notification = message.notification;
     var android = message.notification?.android;
+
+    print(message);
 
     // If `onMessage` is triggered with a notification, construct our own
     // local notification to show to users using the created channel.
