@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<String> getTokenFirebase() async {
@@ -67,28 +69,7 @@ Future<void> configuration() async {
     importance: Importance.max,
   );
 
-  // var android = const AndroidInitializationSettings('@mipmap/launcher_icon');
-
-  // final initializationSettingsDarwin =
-  //     DarwinInitializationSettings(
-  //   requestSoundPermission: false,
-  //   requestBadgePermission: false,
-  //   requestAlertPermission: false,
-  //   onDidReceiveLocalNotification: (id, title, body, payload) {}
-  //       // onSelectNotification(payload ?? ''),
-  // );
-
-  //  var initSettings = InitializationSettings(
-  //     android: android, iOS: initializationSettingsDarwin);
-
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  // await flutterLocalNotificationsPlugin.initialize(
-  //   initSettings,
-  //   onDidReceiveNotificationResponse: (details) =>{}
-  //       // onSelectNotification(details.payload ?? ''),
-  //   // onDidReceiveBackgroundNotificationResponse:(details) => onSelectNotification(details.payload ?? '')
-  // );
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
