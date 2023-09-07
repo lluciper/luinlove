@@ -9,8 +9,8 @@ import 'utils/firebase_mess.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await getPermission();
+  // await Firebase.initializeApp();
+  // await getPermission();
   Bloc.observer = AppBlocObserver();
   await StorageSharedPreference.init();
   runApp(
@@ -20,7 +20,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,3 +50,4 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
   }
 }
+

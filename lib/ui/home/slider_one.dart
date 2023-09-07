@@ -36,8 +36,8 @@ class SliderOne extends StatelessWidget {
                 totalSteps: 100,
                 currentStep: 74,
                 stepSize: 10,
-                selectedColor: Colors.pink[600],
-                unselectedColor: Colors.pink[200],
+                selectedColor: AppColors.pink600,
+                unselectedColor: AppColors.pink200,
                 padding: 0,
                 width: 170,
                 height: 170,
@@ -161,7 +161,7 @@ class SliderOne extends StatelessWidget {
                         '$numberOfDays',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.aBeeZee(
-                          color: Colors.red,
+                          color: AppColors.red,
                           fontWeight: FontWeight.w700,
                           fontSize: 30,
                         ),
@@ -170,7 +170,7 @@ class SliderOne extends StatelessWidget {
                         AppStrings.day.toLowerCase(),
                         textAlign: TextAlign.center,
                         style: GoogleFonts.aBeeZee(
-                          color: Colors.red,
+                          color: AppColors.red,
                           fontWeight: FontWeight.w700,
                           fontSize: 30,
                         ),

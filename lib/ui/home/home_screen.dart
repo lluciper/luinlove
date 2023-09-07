@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               const Positioned(
-                bottom: 150,
+                bottom: 0,
                 child: WaveAnimation(),
               ),
               Column(
@@ -57,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           builder: (BuildContext context) {
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              child: i == 1 ? const SliderOne() : const SliderTwo(),
+                              child: i == 1
+                                  ? const SliderOne()
+                                  : const SliderTwo(),
                             );
                           },
                         );

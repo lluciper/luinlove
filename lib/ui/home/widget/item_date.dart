@@ -22,7 +22,7 @@ class ItemDate extends StatelessWidget {
       ),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Colors.pink,
+        color: AppColors.pink,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
