@@ -34,7 +34,7 @@ class SliderOne extends StatelessWidget {
             children: [
               CircularStepProgressIndicator(
                 totalSteps: 100,
-                currentStep: 74,
+                currentStep: 50,
                 stepSize: 10,
                 selectedColor: AppColors.pink600,
                 unselectedColor: AppColors.pink200,
@@ -100,8 +100,10 @@ class SliderOne extends StatelessWidget {
                                   splashColor: AppColors.transparent,
                                   highlightColor: AppColors.transparent,
                                   onTap: () {
-                                    context.read<HomeCubit>().saveInformation(
-                                        typeSave: TypeSave.SaveDate);
+                                    context
+                                        .read<HomeCubit>()
+                                        .saveInfoAndSaveLocal(
+                                            typeSave: TypeSave.SaveDate);
                                     Navigator.of(context).pop();
                                   },
                                   child: Container(

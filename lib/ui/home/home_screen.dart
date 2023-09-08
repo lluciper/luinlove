@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,66 +26,89 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     context.read<HomeCubit>().init();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Stack(
-            children: [
-              const Positioned(
-                bottom: 0,
-                child: WaveAnimation(),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Stack(
                 children: [
-                  const Flexible(
-                    flex: 1,
-                    child: SizedBox.shrink(),
+                  Positioned(
+                    child: InkWell(
+                      onTap: () async {
+                        context.read<HomeCubit>().chooseImages();
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: AppColors.pink50.withOpacity(0.1),
+                        child:
+                            state.path != null && File(state.path!).existsSync()
+                                ? Image.file(
+                                    File(state.path!),
+                                    fit: BoxFit.fill,
+                                  )
+                                : const SizedBox.shrink(),
+                      ),
+                    ),
                   ),
-                  Flexible(
-                    flex: 4,
-                    child: CarouselSlider(
-                      options:
-                          CarouselOptions(height: 400.0, viewportFraction: 1),
-                      items: [1, 2].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: i == 1
-                                  ? const SliderOne()
-                                  : const SliderTwo(),
+                  const Positioned(
+                    bottom: 0,
+                    child: WaveAnimation(),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Flexible(
+                        flex: 1,
+                        child: SizedBox.shrink(),
+                      ),
+                      Flexible(
+                        flex: 4,
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                              height: 400.0, viewportFraction: 1),
+                          items: [1, 2].map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: i == 1
+                                      ? const SliderOne()
+                                      : const SliderTwo(),
+                                );
+                              },
                             );
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        item(),
-                        item(),
-                      ],
-                    ),
-                  ),
-                  const Flexible(
-                    flex: 1,
-                    child: SizedBox.shrink(),
+                          }).toList(),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            item(),
+                            item(),
+                          ],
+                        ),
+                      ),
+                      const Flexible(
+                        flex: 1,
+                        child: SizedBox.shrink(),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-          )),
+              ));
+        },
+      ),
     );
   }
 

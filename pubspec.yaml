@@ -30,12 +30,15 @@ dependencies:
   json_annotation: ^4.8.1
 
   # Local storage
-  shared_preferences: ^2.2.0
+  shared_preferences: ^2.2.1
 
   # Firebase
   firebase_core: ^2.14.0
   firebase_messaging: ^14.6.4
   flutter_local_notifications: ^15.0.1+1
+
+  # Picking image
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:

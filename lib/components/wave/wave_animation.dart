@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../utils/utils.dart';
+
 // class WaveAnimation extends StatefulWidget {
 //   const WaveAnimation({super.key});
 
@@ -167,7 +169,7 @@ class _WaveAnimationState extends State<WaveAnimation>
     super.initState();
     animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
-    animationController.repeat(reverse: true);
+    animationController.repeat();
   }
 
   @override
@@ -180,25 +182,7 @@ class _WaveAnimationState extends State<WaveAnimation>
           Container(
             alignment: Alignment.bottomCenter,
             child: CustomPaint(
-              size: Size(width + 100, 400),
-              painter: WavePainter(
-                controller: animationController,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: CustomPaint(
-              size: Size(width + 300, 400),
-              painter: WavePainter(
-                controller: animationController,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: CustomPaint(
-              size: Size(width + 500, 400),
+              size: Size(width + 100, 300),
               painter: WavePainter(
                 controller: animationController,
               ),
@@ -217,7 +201,7 @@ class WavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = Colors.blue
+      ..color = AppColors.red500.withOpacity(0.2)
       ..style = PaintingStyle.fill;
 
     var path = Path();
@@ -225,7 +209,7 @@ class WavePainter extends CustomPainter {
 
     for (var x = 0.0; x <= size.width; x += 20) {
       var sine = sin((x / size.width) * 2 * pi + controller.value * 2 * pi);
-      var waveHeight = y + sine * 50;
+      var waveHeight = y + sine * 30;
       path.lineTo(x, waveHeight);
     }
 

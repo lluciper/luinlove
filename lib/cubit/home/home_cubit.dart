@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 import '../../model/user_model/user_model.dart';
 import '../../utils/format_date_time.dart';
+import '../../utils/shared_pref.dart';
 import '../../utils/utils.dart';
 
 part 'home_state.dart';
@@ -12,8 +16,23 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeState());
 
-  void init() {
-    emit(state.copyWith(information: const UserModel()));
+  void init() async {
+    final data = await SharedPref().readDataUser();
+    if (data != null) {
+      final dataModel = UserModel.fromJson(json.decode(data));
+      emit(state.copyWith(
+        information: dataModel,
+        saveDate: dataModel.saveDate.toString().formatDateToString,
+      ));
+    }
+  }
+
+  void saveInfoAndSaveLocal({
+    required TypeSave typeSave,
+    String data = '',
+  }) {
+    saveInformation(typeSave: typeSave, data: data);
+    saveDataLocal();
   }
 
   void saveInformation({
@@ -67,7 +86,6 @@ class HomeCubit extends Cubit<HomeState> {
             information: state.information?.copyWith(
               saveDate: state.changeDate?.formatStringToDate,
             )));
-
       default:
         return;
     }
@@ -75,5 +93,15 @@ class HomeCubit extends Cubit<HomeState> {
 
   void changeDate(DateTime? date) {
     emit(state.copyWith(changeDate: date ?? DateTime.now()));
+  }
+
+  void chooseImages() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    emit(state.copyWith(path: pickedImage?.path));
+  }
+
+  void saveDataLocal() {
+    SharedPref().saveDataUser(jsonEncode(state.information));
   }
 }
