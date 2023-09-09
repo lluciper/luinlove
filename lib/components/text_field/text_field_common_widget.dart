@@ -1,307 +1,198 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/utils.dart';
 
-
-class TextFieldCommon extends StatefulWidget {
-  const TextFieldCommon({
+class TextFieldSendRecord extends StatefulWidget {
+  const TextFieldSendRecord({
     Key? key,
-    this.label,
-    this.hintText,
-    this.suffixIcon,
-    this.prefixIcon,
-    this.labelStyle,
-    this.fillColor = AppColors.transparent,
-    this.clearTextColor = AppColors.transparent,
-    this.obscureText = false,
     this.controller,
-    this.focusNode,
-    this.onChanged,
-    this.onTap,
-    this.hintStyle,
-    this.cursorColor,
-    this.style,
-    this.borderColor = Colors.transparent,
-    this.onSubmitted,
-    this.focusColor = AppColors.transparent,
+    required this.labelText,
+    required this.hintText,
+    required this.errorText,
+    this.obscureText = false,
+    this.prefixIcon,
+    this.suffixIcon,
+    required this.onChanged,
+    this.enable = true,
+    this.minLines = 1,
     this.maxLines = 1,
-    this.height,
-    this.keyboardType,
     this.isRequired = false,
-    this.autofocus = false,
-    this.floatingLabelBehavior,
-    this.contentPadding,
-    this.inputFormatters,
     this.readOnly = false,
-    this.onEditingComplete,
+    this.onTap,
+    this.numberOnly = false,
+    this.textStyle,
+    this.inputFormatters,
+    this.fillColor,
+    this.isSearch = false,
     this.textInputAction,
-    this.labelNoFocus = '',
-    this.isCollapsed = false,
-    this.hasClearText = false,
-    this.onClearText,
-    this.cursorHeight,
+    this.onFieldSubmitted,
+    this.autoFocus = false,
+    this.textCapitalization = TextCapitalization.none,
+    this.focusNode,
+    this.initialValue,
+    this.onEditingComplete,
   }) : super(key: key);
-
-  final String? label;
-  final String labelNoFocus;
-  final String? hintText;
-  final Widget? suffixIcon;
-  final Widget? prefixIcon;
-  final Color? fillColor;
-  final Color? cursorColor;
-  final double? cursorHeight;
-  final Color borderColor;
-  final Color focusColor;
-  final Color clearTextColor;
-  final TextStyle? labelStyle;
-  final TextStyle? hintStyle;
-  final TextStyle? style;
   final TextEditingController? controller;
-  final FocusNode? focusNode;
-  final void Function(String)? onChanged;
-  final void Function(String)? onSubmitted;
-  final void Function()? onEditingComplete;
-  final void Function()? onTap;
-  final void Function()? onClearText;
+  final bool enable;
+  final String? labelText;
+  final String? hintText;
+  final String? errorText;
+  final bool obscureText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final void Function(String?)? onChanged;
+  final int minLines;
   final int maxLines;
-  final double? height;
-  final TextInputType? keyboardType;
   final bool isRequired;
   final bool readOnly;
-  final bool obscureText;
-  final bool autofocus;
-  final bool isCollapsed;
-  final bool hasClearText;
-  final FloatingLabelBehavior? floatingLabelBehavior;
-  final TextInputAction? textInputAction;
-  final EdgeInsetsGeometry? contentPadding;
   final List<TextInputFormatter>? inputFormatters;
+  final void Function()? onTap;
+  final bool numberOnly;
+  final TextStyle? textStyle;
+  final Color? fillColor;
+  final bool isSearch;
+  final TextInputAction? textInputAction;
+  final void Function(String?)? onFieldSubmitted;
+  final void Function(String?)? onEditingComplete;
+  final bool autoFocus;
+  final TextCapitalization textCapitalization;
+  final FocusNode? focusNode;
+  final String? initialValue;
 
   @override
-  State<TextFieldCommon> createState() => _TextFieldCommonState();
+  State<TextFieldSendRecord> createState() => _TextFieldSendRecordState();
 }
 
-class _TextFieldCommonState extends State<TextFieldCommon> {
-  FocusNode? _focusNode;
-  TextEditingController? _textCTL;
-  bool isShowClose = false;
-  bool hasListenController = false;
-
+class _TextFieldSendRecordState extends State<TextFieldSendRecord> {
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
-    _textCTL = TextEditingController();
-    // initListenController();
-    // (widget.focusNode ?? _focusNode)?.addListener(_handleFocusChanged);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: widget.maxLines > 1 ? null : widget.height,
-              constraints: BoxConstraints(
-                minHeight: widget.height ?? 56,
-              ),
-              decoration: BoxDecoration(
-                color: widget.fillColor,
-                borderRadius: BorderRadius.circular(8),
-                // border: ,
-              ),
-              child: TextField(
-                focusNode: widget.focusNode ?? _focusNode,
-                controller: widget.controller ?? _textCTL,
-                obscureText: widget.obscureText,
-                obscuringCharacter: '●',
-                readOnly: widget.readOnly,
-                minLines: 1,
-                maxLines: widget.obscureText ? 1 : widget.maxLines,
-                cursorRadius: const Radius.circular(100),
-                onTap: widget.onTap,
-                onSubmitted: widget.onSubmitted,
-                onEditingComplete: widget.onEditingComplete,
-                keyboardType: widget.keyboardType,
-                inputFormatters: widget.inputFormatters,
-                textInputAction: widget.textInputAction,
-                decoration: InputDecoration(
-                  label: RichText(
-                    text: TextSpan(
-                      // text: _getLabel(),
-                      style: widget.labelStyle 
-                          ,
-                      children: [
-                        if (widget.isRequired)
-                          TextSpan(
-                            text: ' *',
-                            // style: style,
-                          ),
-                      ],
-                    ),
+    return Stack(
+      children: [
+        TextFormField(
+          key: widget.key,
+          initialValue: widget.initialValue,
+          focusNode: widget.focusNode,
+          textCapitalization: widget.textCapitalization,
+          autofocus: widget.autoFocus,
+          onFieldSubmitted: widget.onFieldSubmitted,
+          textInputAction: widget.textInputAction,
+          // inputFormatters: [
+          //   FilteringTextInputFormatter.deny(RegExp(
+          //       r'(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])'))
+          // ],
+          onTap: widget.onTap,
+          readOnly: widget.readOnly,
+          style: GoogleFonts.aBeeZee(
+            color: AppColors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+          onChanged: widget.onChanged,
+          controller: widget.controller,
+          enabled: widget.enable,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          obscureText: widget.obscureText,
+          decoration: InputDecoration(
+            fillColor: widget.fillColor ?? AppColors.white,
+            filled: true,
+            label: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  widget.labelText ?? '',
+                  style: GoogleFonts.aBeeZee(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
                   ),
-                  isCollapsed: widget.isCollapsed,
-                  prefixIcon: widget.prefixIcon != null
-                      ? Container(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
-                          height: 24,
-                          width: 24,
-                          child: widget.prefixIcon,
-                        )
-                      : null,
-                  // suffixIcon: _buildSuffixIcon(),
-                  // contentPadding: _getContentPadding(),
-                  floatingLabelBehavior: widget.floatingLabelBehavior ??
-                      (widget.label == null
-                          ? FloatingLabelBehavior.never
-                          : FloatingLabelBehavior.auto),
-                  hintText: widget.hintText,
-                  hintStyle:
-                      widget.hintStyle,
-                  border: InputBorder.none,
-                  isDense: true,
+                  // style: AppTextStyles.small.fw400().copyWith(
+                  //     color:
+                  //         (widget.errorText == null || widget.errorText == '')
+                  //             ? AppColors.N7
+                  //             : AppColors.R5),
                 ),
-                autofocus: widget.autofocus,
-                cursorColor: widget.cursorColor ?? AppColors.transparent,
-                cursorHeight: widget.cursorHeight,
-                style: widget.style ,
+                widget.isRequired
+                    ? Text(
+                        ' *',
+                        style: GoogleFonts.aBeeZee(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                        // style: AppTextStyles.small.fw400().fcR5(),
+                      )
+                    : const SizedBox(),
+              ],
+            ),
+            prefixIcon: widget.prefixIcon,
+            suffixIcon: widget.suffixIcon,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: widget.hintText,
+            hintStyle: GoogleFonts.aBeeZee(
+              color: AppColors.gray500,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+            errorText: (widget.errorText == null || widget.errorText == '')
+                ? null
+                : (' ${widget.errorText!}'),
+            errorStyle: GoogleFonts.aBeeZee(
+              color: AppColors.gray500,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+            contentPadding: EdgeInsets.only(
+                top: 0, bottom: 0, left: 12, right: widget.isSearch ? 40 : 12),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: AppColors.gray500,
+                width: 1,
+                style: BorderStyle.none,
               ),
             ),
-            // if (_checkRequired(isActiveRequired.value)) ...[
-            //   const SizedBox(height: 2),
-            //   Align(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       'Vui lòng không bỏ trống trường này',
-            //       style: VTVStyle.smallRegular.red300,
-            //     ),
-            //   ),
-            // ],
-          ],
-        );
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: BorderSide(
+                color: AppColors.gray500,
+                width: 1,
+                style: widget.isSearch ? BorderStyle.none : BorderStyle.solid,
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: AppColors.gray500,
+                width: 1,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: AppColors.green,
+                width: 1,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: AppColors.red,
+                width: 1,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
-
-  // void initListenController() {
-  //   (widget.controller ?? _textCTL)?.addListener(() {
-  //     widget.onChanged?.call((widget.controller ?? _textCTL)?.text ?? '');
-  //     if (widget.isRequired &&
-  //         !isActiveRequired.value &&
-  //         ((widget.controller ?? _textCTL)?.text ?? '').isNotEmpty) {
-  //       isActiveRequired.value = true;
-  //     }
-
-  //     if (isShowClose && (widget.controller ?? _textCTL)!.text.isNotEmpty) {
-  //       return;
-  //     } else {
-  //       if (mounted) {
-  //         setState(() {
-  //           isShowClose = _isShowClose;
-  //         });
-  //       }
-  //     }
-  //   });
-  // }
-
-  // Border _renderBorder(bool isActiveRequired) {
-  //   if (widget.isRequired &&
-  //       isActiveRequired &&
-  //       ((widget.controller ?? _textCTL)?.text ?? '').isEmpty) {
-  //     return Border.all(color: VTVColor.red300);
-  //   }
-
-  //   return Border.all(
-  //     color: (widget.focusNode ?? _focusNode)?.hasFocus == true
-  //         ? widget.focusColor
-  //         : widget.borderColor,
-  //   );
-  // }
-
-  // void _handleFocusChanged() {
-  //   if (mounted) {
-  //     if ((widget.focusNode ?? _focusNode)?.hasFocus == false) {
-  //       setState(() {
-  //         isShowClose = false;
-  //       });
-  //     } else if (((widget.controller ?? _textCTL)?.text ?? '').isNotEmpty) {
-  //       setState(() {
-  //         isShowClose = true;
-  //       });
-  //     }
-  //   }
-  // }
-
-  // EdgeInsetsGeometry _getContentPadding() {
-  //   if (widget.contentPadding != null) {
-  //     return widget.contentPadding!;
-  //   }
-
-  //   return widget.label != null &&
-  //           widget.floatingLabelBehavior != FloatingLabelBehavior.never
-  //       ? const EdgeInsets.symmetric(vertical: 8, horizontal: 16)
-  //       : const EdgeInsets.only(bottom: 16);
-  // }
-
-  // String _getLabel() {
-  //   if ((widget.focusNode ?? _focusNode)?.hasFocus == true ||
-  //       ((widget.controller ?? _textCTL)?.text ?? '').isNotEmpty ||
-  //       widget.labelNoFocus.isEmpty) {
-  //     return widget.label ?? '';
-  //   }
-
-  //   return widget.labelNoFocus;
-  // }
-
-  // bool _checkRequired(bool isActiveRequired) =>
-  //     widget.isRequired &&
-  //     isActiveRequired &&
-  //     (widget.controller ?? _textCTL)!.text.isEmpty;
-
-  // bool get _isShowClose {
-  //   if ((widget.controller ?? _textCTL)!.text.isNotEmpty &&
-  //       (widget.focusNode ?? _focusNode)?.hasFocus == true) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
-
-  // Widget _buildSuffixIcon() {
-  //   if (widget.hasClearText && isShowClose) {
-  //     return VTVGestureDetector(
-  //       onTap: () {
-  //         (widget.controller ?? _textCTL)?.clear();
-  //         widget.onClearText?.call();
-  //       },
-  //       child: Container(
-  //         padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
-  //         child: Assets.icons.essential.close.svg(
-  //           colorFilter: widget.clearTextColor.svgColor,
-  //           height: 24,
-  //           width: 24,
-  //         ),
-  //       ),
-  //     );
-  //   } else if (widget.suffixIcon != null) {
-  //     return Container(
-  //       padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
-  //       height: 24,
-  //       width: 24,
-  //       child: widget.suffixIcon,
-  //     );
-  //   }
-
-  //   return const SizedBox.shrink();
-  // }
-
-  // @override
-  // void dispose() {
-  //   (widget.controller ?? _textCTL)?.removeListener(() {});
-  //   (widget.focusNode ?? _focusNode)?.removeListener(() {});
-  //   _focusNode?.dispose();
-  //   _textCTL?.dispose();
-
-  //   super.dispose();
-  // }
 }

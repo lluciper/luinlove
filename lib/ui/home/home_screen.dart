@@ -10,6 +10,7 @@ import '../../cubit/home/home_cubit.dart';
 import '../../utils/utils.dart';
 import 'slider_one.dart';
 import 'slider_two.dart';
+import 'widget/dialog/update_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     context.read<HomeCubit>().init();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Positioned(
                     child: InkWell(
                       onTap: () async {
-                        context.read<HomeCubit>().chooseImages();
+                        // context.read<HomeCubit>().chooseImages();
+                        await showDialog(
+                          context: context,
+                          builder: (context) => DialogUpdateInfo(),
+                        );
                       },
                       child: Container(
                         width: double.infinity,
