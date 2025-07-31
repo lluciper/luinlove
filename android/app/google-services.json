@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "904605132436",
+    "project_id": "luinlove-9ee78",
+    "storage_bucket": "luinlove-9ee78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904605132436:android:d2e6df6489a057a1c43681",
+        "android_client_info": {
+          "package_name": "com.example.luinlove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904605132436-s321l6ss5jdthdjdu5skbal8q1vp5iof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPbD_MAZY_pRlWAUIwNfO3L2oph0Svm8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904605132436-s321l6ss5jdthdjdu5skbal8q1vp5iof.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "904605132436-2uad7mni85avc3f0gi6k7dl95vjmuhj1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.luinlove"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
